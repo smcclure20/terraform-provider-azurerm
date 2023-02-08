@@ -13,13 +13,17 @@ type VirtualMachineId struct {
 	SubscriptionId string
 	ResourceGroup  string
 	Name           string
+	Eip			   string
+	Sip            string
 }
 
-func NewVirtualMachineID(subscriptionId, resourceGroup, name string) VirtualMachineId {
+func NewVirtualMachineID(subscriptionId, resourceGroup, name string, eip, sip) VirtualMachineId {
 	return VirtualMachineId{
 		SubscriptionId: subscriptionId,
 		ResourceGroup:  resourceGroup,
 		Name:           name,
+		Eip: 			eip,
+		Sip: 			sip
 	}
 }
 
@@ -27,6 +31,8 @@ func (id VirtualMachineId) String() string {
 	segments := []string{
 		fmt.Sprintf("Name %q", id.Name),
 		fmt.Sprintf("Resource Group %q", id.ResourceGroup),
+		fmt.Sprintf("Eip %q", id.Eip),
+		fmt.Sprintf("Sip %q", id.Sip),
 	}
 	segmentsStr := strings.Join(segments, " / ")
 	return fmt.Sprintf("%s: (%s)", "Virtual Machine", segmentsStr)
@@ -47,6 +53,8 @@ func VirtualMachineID(input string) (*VirtualMachineId, error) {
 	resourceId := VirtualMachineId{
 		SubscriptionId: id.SubscriptionID,
 		ResourceGroup:  id.ResourceGroup,
+		Eip: 			id.Eip,
+		Sip: 			id.Sip
 	}
 
 	if resourceId.SubscriptionId == "" {
