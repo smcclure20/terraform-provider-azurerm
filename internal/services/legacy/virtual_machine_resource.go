@@ -81,6 +81,16 @@ func resourceVirtualMachine() *pluginsdk.Resource {
 
 			"resource_group_name": commonschema.ResourceGroupName(),
 
+			"eip": {
+				Type:     pluginsdk.TypeString,
+				Optional: true,
+				ForceNew: true,
+			},
+			"sip": {
+				Type:     pluginsdk.TypeString,
+				Optional: true,
+				ForceNew: true,
+			},
 			"zones": {
 				// @tombuildsstuff: since this is the legacy VM resource this is intentionally not using commonschema for consistency
 				Type:     pluginsdk.TypeList,
